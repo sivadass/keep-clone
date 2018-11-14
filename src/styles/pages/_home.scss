@@ -3,7 +3,32 @@
   margin-bottom: 36px;
 }
 
-.note-item.note-item {
+.add-new-note{
+  margin-bottom: 36px;
+  display: flex;
+  background: rgba(224, 115, 134, 0.08);
+  padding: 32px;
+  border-radius: 6px;
+  .form-control{
+    flex-grow: 1;
+  }
+  .primary-cta{
+    margin-left: 24px;
+    width: 200px;
+  }
+  @media(max-width: 580px){
+    display: block;
+    .form-control{
+      margin-bottom: 16px;
+    }
+    .primary-cta{
+      width: 100%;
+      margin: 0;
+    }
+  }
+}
+
+.note-item {
   padding: 24px;
   border-radius: 6px;
   box-shadow: $default-box-shadow;
@@ -17,6 +42,9 @@
   }
   .status {
     margin-right: 24px;
+    .icon-check-circle{
+      opacity: 0.22;
+    }
   }
   .message {
     flex-grow: 1;
@@ -26,12 +54,8 @@
       font-weight: normal;
       color: $primary-color;
     }
-    .message-input {
-      width: 100%;
+    .form-control{
       height: 32px;
-      border: 1px solid $primary-color;
-      padding: 0 16px;
-      border-radius: 4px;
     }
   }
   .actions {
@@ -49,6 +73,14 @@
     .actions {
       visibility: visible;
       opacity: 1;
+    }
+  }
+  &.completed{
+    .message{
+      h3{
+        color: $light-text-color;
+        text-decoration: line-through;
+      }
     }
   }
 }

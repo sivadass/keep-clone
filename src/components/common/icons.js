@@ -4,7 +4,9 @@ import add from "../../images/plus-circle.svg";
 import addWhite from "../../images/plus-circle-white.svg";
 import circle from "../../images/circle.svg";
 import check from "../../images/check-circle.svg";
+import checkSimple from '../../images/check-simple.svg';
 import edit from "../../images/edit-2.svg";
+import more from "../../images/more-vertical.svg"
 
 const renderIcon = name => {
   switch (name) {
@@ -18,6 +20,10 @@ const renderIcon = name => {
       return trash;
     case "edit":
       return edit;
+    case "more-menu":
+      return more;
+    case "check-simple":
+      return checkSimple
     default:
       return check;
   }

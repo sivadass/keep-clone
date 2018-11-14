@@ -1,0 +1,24 @@
+.form-control{
+  width: 100%;
+  height: 44px;
+  border: 1px solid $primary-color;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+.primary-cta {
+  cursor: pointer;
+  background: $primary-color;
+  color: $white;
+  border-radius: 4px;
+  border: transparent;
+  height: 44px;
+  line-height: 36px;
+  padding: 0 24px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .icon{
+    margin-right: 6px;
+  }
+}

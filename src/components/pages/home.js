@@ -1,5 +1,6 @@
 import React from "react";
 import NoteItem from "../common/note-item";
+import AddNoteForm from "../common/add-note-form";
 
 class Home extends React.Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class Home extends React.Component {
     const { isLoading, notes } = this.state;
     return (
       <div className="container home">
+        <AddNoteForm />
         <div>
           {notes.map(item => (
             <NoteItem
