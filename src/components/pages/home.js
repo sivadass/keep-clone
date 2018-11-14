@@ -7,43 +7,52 @@ class Home extends React.Component {
     super(props);
     this.state = {
       isLoading: false,
-      notes: [
-        {
-          id: 1,
-          message: "Lorem Ipsum some text goes here",
-          isCompleted: false
-        },
-        {
-          id: 2,
-          message: "Lora Bipsu Ipsum some text goes here",
-          isCompleted: false
-        },
-        {
-          id: 3,
-          message: "Dolor Ipsum some text goes here",
-          isCompleted: true
-        }
-      ]
+      notes: []
     };
   }
 
-  handleTitleKeyword = e => {
-    this.setState({
-      titleKeyword: e.target.value
-    });
-  };
+  handleAddNew = (id, message, isCompleted) => {
+    let newNote = { id, message, isCompleted };
+    let notes = [...this.state.notes, newNote];
+    this.setState({ notes });
+  }
+
+  handleStatusUpdate = (id, isCompleted) => {
+    let notes = [...this.state.notes];
+    let index = notes.findIndex(item => item.id === id);
+    notes[index].isCompleted = isCompleted;
+    this.setState({ notes });
+  }
+
+  handleMessageUpdate = (id, message) => {
+    let notes = [...this.state.notes];
+    let index = notes.findIndex(item => item.id === id);
+    notes[index].message = message;
+    this.setState({ notes });
+  }
+
+  handleDelete = (id) => {
+    let notes = [...this.state.notes];
+    let index = notes.findIndex(item => item.id === id);
+    notes.splice(index, 1);
+    this.setState({ notes });
+  }
 
   render() {
     const { isLoading, notes } = this.state;
     return (
       <div className="container home">
-        <AddNoteForm />
+        <AddNoteForm handleAddNew={this.handleAddNew}/>
         <div>
           {notes.map(item => (
             <NoteItem
               key={item.id}
+              id={item.id}
               isCompleted={item.isCompleted}
               message={item.message}
+              handleMessageUpdate={this.handleMessageUpdate}
+              handleStatusUpdate={this.handleStatusUpdate}
+              handleDelete={this.handleDelete}
             />
           ))}
         </div>

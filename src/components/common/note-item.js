@@ -5,7 +5,9 @@ class NoteItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isEditing: false
+      isEditing: false,
+      message : this.props.message || "",
+      isCompleted : this.props.isCompleted || false 
     };
     this.inputRef = React.createRef();
     this.parentRef = React.createRef();
@@ -20,9 +22,6 @@ class NoteItem extends React.Component {
       }
     });
   };
-  handleStatus = (e) => {
-    console.log('clicked');
-  }
   componentDidMount() {
     document.addEventListener('click', this.handleClickOutside, true);
   }
@@ -36,26 +35,56 @@ class NoteItem extends React.Component {
       })
     }
   }
+
+  handleMessage = (e) => {
+    this.setState({
+      message: e.target.value
+    })
+  }
+
+  handleMessageUpdate = (e) => {
+    const {id} = this.props;
+    const {message} = this.state;
+    e.preventDefault();
+    this.props.handleMessageUpdate(id, message);
+    this.toggleEditing(e);
+  }
+
+  handleStatusUpdate = (e) => {
+    const {isCompleted} = this.state;
+    const {id} = this.props;
+    e.preventDefault();
+    this.setState({
+      isCompleted: !isCompleted
+    }, () => {
+      this.props.handleStatusUpdate(id, isCompleted)
+    })
+  }
+
+  handleDelete = (e) => {
+    e.preventDefault();
+    const {id} = this.props;
+    this.props.handleDelete(id)
+  }
   render() {
-    const { message, isCompleted } = this.props;
-    const { isEditing } = this.state;
+    const { message, isCompleted, isEditing } = this.state;
     return (
       <div className={isCompleted ? "note-item completed" : "note-item"} ref={this.parentRef}>
         <div className="status">
-          <a href="#" onClick={this.handleStatus} title={isCompleted ? "Mark as incomplete" : "Mark as complete"}>
+          <a href="#" onClick={this.handleStatusUpdate} title={isCompleted ? "Mark as incomplete" : "Mark as complete"}>
             <Icon name={isCompleted ? "checked" : "check-circle"} size="24" />
           </a>
         </div>
         <div className="message">
           {isEditing ? (
-            <input ref={this.inputRef} className="form-control" defaultValue={message} />
+            <input ref={this.inputRef} className="form-control" value={message} onChange={this.handleMessage}/>
           ) : (
             <h3>{message}</h3>
           )}
         </div>
         <div className="actions">
           {isEditing ? (
-            <a href="#" onClick={this.toggleEditing} title="Update">
+            <a href="#" onClick={this.handleMessageUpdate} title="Update">
               <Icon name="check-simple" size="24" />
             </a>
           ) : (
@@ -63,7 +92,7 @@ class NoteItem extends React.Component {
               <Icon name="edit" size="24" />
             </a>
           )}
-          <a href="#" title="Delete">
+          <a href="#" title="Delete" onClick={this.handleDelete}>
             <Icon name="trash" size="24" />
           </a>
         </div>
