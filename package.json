@@ -1,5 +1,5 @@
 {
-  "name": "kickstarter-explorer",
+  "name": "keep-clone",
   "version": "0.0.1",
   "description": "HDFC Life ReactJS Developer Hiring Challenge",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sivadass/kickstarter-explorer.git"
+    "url": "git+https://github.com/sivadass/keep-clone.git"
   },
   "author": "Sivadass N",
   "license": "MIT",

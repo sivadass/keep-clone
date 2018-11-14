@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../images/logo.svg";
-import Icon from "../common/icons";
+import Icon from "./icons";
 
 class Header extends React.Component {
   constructor(props) {
@@ -10,9 +10,9 @@ class Header extends React.Component {
     return (
       <div className="header">
         <div className="container">
-          <h1 className="logo">Keep</h1>
+          <img className="logo" src={logo} alt="Keep" />
           <a href="#" className="primary-cta">
-            + Add New
+            <Icon name="add" size="18" /> Add New
           </a>
         </div>
       </div>

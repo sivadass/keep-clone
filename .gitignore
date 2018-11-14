@@ -62,3 +62,6 @@ typings/
 
 # Mac Specific
 .DS_Store
+
+# Build
+dist/
