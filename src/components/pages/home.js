@@ -67,21 +67,25 @@ class Home extends React.Component {
     }
   }
 
-  renderNotes = () => {
+  renderTodos = () => {
     const {notes} = this.state;
-    if(notes.length > 0){
+    const todo = notes.filter(item => item.isCompleted === false);
+    if(todo.length > 0){
       return(
-        notes.map(item => (
-          <NoteItem
-            key={item.id}
-            id={item.id}
-            isCompleted={item.isCompleted}
-            message={item.message}
-            handleMessageUpdate={this.handleMessageUpdate}
-            handleStatusUpdate={this.handleStatusUpdate}
-            handleDelete={this.handleDelete}
-          />
-        ))
+        <div className="notes-wrapper">
+          <h2>Todos</h2>
+          {todo.map(item => (
+            <NoteItem
+              key={item.id}
+              id={item.id}
+              isCompleted={item.isCompleted}
+              message={item.message}
+              handleMessageUpdate={this.handleMessageUpdate}
+              handleStatusUpdate={this.handleStatusUpdate}
+              handleDelete={this.handleDelete}
+            />
+          ))}
+        </div>
       )
     } else{
       return(
@@ -93,13 +97,40 @@ class Home extends React.Component {
     }
   }
 
+  renderCompleted = () => {
+    const {notes} = this.state;
+    const completed = notes.filter(item => item.isCompleted === true);
+    if(completed.length > 0){
+      return(
+        <div className="notes-wrapper">
+          <h2>Completed</h2>
+          {completed.map(item => (
+            <NoteItem
+              key={item.id}
+              id={item.id}
+              isCompleted={item.isCompleted}
+              message={item.message}
+              handleMessageUpdate={this.handleMessageUpdate}
+              handleStatusUpdate={this.handleStatusUpdate}
+              handleDelete={this.handleDelete}
+            />
+          ))}
+        </div>
+      )
+    } else{
+      return false
+    }
+  }
+
   render() {
-    const { notes } = this.state;
     return (
       <div className="container home">
         <AddNoteForm handleAddNew={this.handleAddNew}/>
         <div>
-          {this.renderNotes()}
+          {this.renderTodos()}
+        </div>
+        <div>
+          {this.renderCompleted()}
         </div>
       </div>
     );

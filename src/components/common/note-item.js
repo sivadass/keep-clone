@@ -12,6 +12,7 @@ class NoteItem extends React.Component {
     this.inputRef = React.createRef();
     this.parentRef = React.createRef();
   }
+
   toggleEditing = e => {
     e.preventDefault();
     this.setState({
@@ -21,13 +22,16 @@ class NoteItem extends React.Component {
         this.inputRef.current.focus();
       }
     });
-  };
+  }
+
   componentDidMount() {
     document.addEventListener('click', this.handleClickOutside, true);
   }
+
   componentWillUnmount() {
     document.removeEventListener('click', this.handleClickOutside, true);
   }
+
   handleClickOutside = (e) => {
     if(!this.parentRef.current.contains(e.target)){
       this.setState({
@@ -73,6 +77,7 @@ class NoteItem extends React.Component {
     const {id} = this.props;
     this.props.handleDelete(id)
   }
+
   render() {
     const { message, isCompleted, isEditing } = this.state;
     return (
