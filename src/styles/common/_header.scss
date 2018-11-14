@@ -1,0 +1,22 @@
+.header {
+  background: $primary-color;
+  padding: 16px 0;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-weight: bold;
+    color: $white;
+  }
+  .primary-cta {
+    background: $white;
+    color: $primary-color;
+    border-radius: 4px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 24px;
+    font-weight: bold;
+  }
+}

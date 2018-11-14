@@ -1,0 +1,15 @@
+.home {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.note-item.note-item {
+  padding: 16px;
+  border-radius: 6px;
+  box-shadow: $default-box-shadow;
+  margin-bottom: 16px;
+  h3 {
+    font-weight: normal;
+    color: $primary-color;
+  }
+}
