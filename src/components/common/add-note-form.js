@@ -8,7 +8,7 @@ class AddNoteForm extends React.Component{
     this.state = {
       id: uuidv1(),
       message: "",
-      isCompleted: true
+      isCompleted: false
     }
   }
 
@@ -16,6 +16,12 @@ class AddNoteForm extends React.Component{
     this.setState({
       message: e.target.value
     })
+  }
+
+  handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      this.handleSubmit();
+    }
   }
 
   handleSubmit = () => {
@@ -33,7 +39,13 @@ class AddNoteForm extends React.Component{
   render(){
     return(
       <div className="add-new-note">
-        <input className="form-control" type="text" value={this.state.message} placeholder="Enter new note here" onChange={this.handleChange}/>
+        <input 
+          className="form-control" 
+          type="text" value={this.state.message} 
+          placeholder="Enter new note here" 
+          onChange={this.handleChange}
+          onKeyPress={this.handleEnter}
+        />
         <button className="primary-cta" type="submit" onClick={this.handleSubmit}>
           <Icon name="add" size="21" /> Add New
         </button>

@@ -42,22 +42,29 @@ class NoteItem extends React.Component {
     })
   }
 
+  handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      this.handleMessageUpdate(e);
+    }
+  }
+
   handleMessageUpdate = (e) => {
     const {id} = this.props;
     const {message} = this.state;
     e.preventDefault();
-    this.props.handleMessageUpdate(id, message);
-    this.toggleEditing(e);
+    if(message.length > 0){
+      this.props.handleMessageUpdate(id, message);
+      this.toggleEditing(e);
+    }
   }
 
   handleStatusUpdate = (e) => {
-    const {isCompleted} = this.state;
     const {id} = this.props;
     e.preventDefault();
     this.setState({
-      isCompleted: !isCompleted
+      isCompleted: !this.state.isCompleted
     }, () => {
-      this.props.handleStatusUpdate(id, isCompleted)
+      this.props.handleStatusUpdate(id, this.state.isCompleted)
     })
   }
 
@@ -77,7 +84,13 @@ class NoteItem extends React.Component {
         </div>
         <div className="message">
           {isEditing ? (
-            <input ref={this.inputRef} className="form-control" value={message} onChange={this.handleMessage}/>
+            <input 
+              ref={this.inputRef} 
+              className="form-control" 
+              value={message} 
+              onChange={this.handleMessage} 
+              onKeyPress={this.handleEnter}
+            />
           ) : (
             <h3>{message}</h3>
           )}

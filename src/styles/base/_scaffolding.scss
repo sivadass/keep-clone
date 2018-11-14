@@ -3,3 +3,12 @@
   margin: 0 auto;
   padding: 0 16px;
 }
+
+.empty-state{
+  text-align: center;
+  padding: 32px;
+  opacity: 0.44;
+  h1{
+    margin-bottom: 16px;
+  }
+}
