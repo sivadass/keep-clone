@@ -1,7 +1,7 @@
 {
   "name": "keep-clone",
   "version": "0.0.1",
-  "description": "HDFC Life ReactJS Developer Hiring Challenge",
+  "description": "A mini Google Keep Clone",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
